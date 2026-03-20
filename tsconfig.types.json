@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES2020", "module": "NodeNext",
+    "moduleResolution": "NodeNext", "lib": ["ES2020"],
+    "strict": true, "exactOptionalPropertyTypes": true,
+    "noUncheckedIndexedAccess": true,
+    "declaration": true, "emitDeclarationOnly": true,
+    "declarationDir": "./dist/types", "rootDir": "./src",
+    "skipLibCheck": true
+  },
+  "include": ["src"]
+}

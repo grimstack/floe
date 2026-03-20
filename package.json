@@ -1,0 +1,54 @@
+{
+  "name": "@bytewraith/floe",
+  "version": "0.1.0",
+  "description": "Safe async data flow — validated env, typed pipelines, built-in retry",
+  "keywords": [
+    "pipeline",
+    "env",
+    "retry",
+    "typescript",
+    "async",
+    "flow"
+  ],
+  "license": "MIT",
+  "author": "bytewraith",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grimstack/floe.git"
+  },
+  "type": "module",
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/types/index.d.cts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json && tsc -p tsconfig.types.json",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest",
+     "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext .ts",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/node": "^20.19.37",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.4.6",
+    "typescript": "^5.9.3"
+  }
+}

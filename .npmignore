@@ -1,0 +1,10 @@
+src/
+*.test.ts
+jest.config.json
+tsconfig*.json
+node_modules/
+.github/
+.npmrc
+dist/cjs/__tests__/
+dist/esm/__tests__/
+dist/types/__tests__/
