@@ -1,3 +1,4 @@
+import { jest } from '@jest/globals'
 import { env, pipeline, circuit, FloeError, FloeEnvError } from '../index.js'
 
 // ─── env() ────────────────────────────────────────────────────────────────────
