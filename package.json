@@ -1,6 +1,6 @@
 {
   "name": "@grimstack/floe",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Safe async data flow — validated env, typed pipelines, built-in retry",
   "keywords": [
     "pipeline",
