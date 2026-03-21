@@ -1,4 +1,4 @@
-# @bytewraith/floe
+# @grimstack/floe
 
 Safe async data flow for Node.js and TypeScript.
 
@@ -6,7 +6,7 @@ Validated env at startup. Typed pipelines. Built-in retry and circuit breaker.
 Zero dependencies. ~4kb gzipped.
 
 ```bash
-npm install @bytewraith/floe
+npm install @grimstack/floe
 ```
 
 ---
@@ -19,7 +19,7 @@ Every serious Node.js service does the same three things badly:
 2. **Chains async operations** — try/catch pyramids, type lost between steps, no retry logic
 3. **Calls unreliable services** — hand-rolled retry loops copy-pasted between projects
 
-`@bytewraith/floe` makes all three right, with one install and one mental model.
+`@grimstack/floe` makes all three right, with one install and one mental model.
 
 ---
 
@@ -28,7 +28,7 @@ Every serious Node.js service does the same three things badly:
 Define a schema once. Get fully typed, validated config. Missing vars throw *before* your server starts — with a message that lists every problem at once.
 
 ```typescript
-import { env } from '@bytewraith/floe'
+import { env } from '@grimstack/floe'
 
 const config = env({
   DATABASE_URL: { required: true },
@@ -68,7 +68,7 @@ One pass. Every problem. No hunting.
 Chain async functions where each stage's output type is the next stage's input type. No casting. No `any`. No lies.
 
 ```typescript
-import { pipeline } from '@bytewraith/floe'
+import { pipeline } from '@grimstack/floe'
 
 const user = await pipeline(userId)        // string
   .pipe(fetchUser)                         // → User
@@ -125,7 +125,7 @@ if (!ok) {
 `.retry()` wraps the *previous* stage only. Surgical, not global.
 
 ```typescript
-import { pipeline } from '@bytewraith/floe'
+import { pipeline } from '@grimstack/floe'
 
 const data = await pipeline(query)
   .pipe(callExternalApi)
@@ -159,7 +159,7 @@ All strategies are capped at 30 seconds. `jitter: true` applies full jitter (uni
 A circuit breaker that opens after N failures in a rolling window, then half-opens to probe recovery.
 
 ```typescript
-import { pipeline, circuit } from '@bytewraith/floe'
+import { pipeline, circuit } from '@grimstack/floe'
 
 const breaker = circuit({
   threshold:  5,       // open after 5 failures
@@ -208,7 +208,7 @@ await pipeline(userId)
 ## Error types
 
 ```typescript
-import { FloeError, FloeEnvError } from '@bytewraith/floe'
+import { FloeError, FloeEnvError } from '@grimstack/floe'
 
 // FloeError — thrown by pipeline stages
 // .stage    → name of the function that failed
@@ -256,11 +256,11 @@ import { FloeError, FloeEnvError } from '@bytewraith/floe'
 
 ## Philosophy
 
-`@bytewraith/floe` is built on three rules:
+`@grimstack/floe` is built on three rules:
 
 **Fail loud, fail early, fail once.** `env()` validates everything in a single pass at boot. You see every problem at once. You fix it once. Your server starts.
 
-**Types flow, they don't get cast.** Every `.pipe()` is typed. The type of stage N's output is the type of stage N+1's input. TypeScript enforces this. There is no `as any` in `@bytewraith/floe`.
+**Types flow, they don't get cast.** Every `.pipe()` is typed. The type of stage N's output is the type of stage N+1's input. TypeScript enforces this. There is no `as any` in `@grimstack/floe`.
 
 **Resilience is surgical, not global.** `.retry()` wraps the stage before it — not the whole pipeline. You choose exactly which operations need retry logic, because not all failures are equal.
 

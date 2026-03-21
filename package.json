@@ -1,5 +1,5 @@
 {
-  "name": "@bytewraith/floe",
+  "name": "@grimstack/floe",
   "version": "0.1.1",
   "description": "Safe async data flow — validated env, typed pipelines, built-in retry",
   "keywords": [
